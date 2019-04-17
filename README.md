@@ -8,7 +8,7 @@ go get github.com/labstack/echo
 go get github.com/dgrijalva/jwt-go
 ```
 
-Riunning localhost.
+Running localhost.
 
 ```
 go run main.go
