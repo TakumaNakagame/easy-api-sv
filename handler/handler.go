@@ -6,8 +6,7 @@ import (
     // "fmt"
 )
 
-var healthStatus = false  
-var healthMsg = "NG"
+var healthStatus = "OK"
 
 func Hello() echo.HandlerFunc {
     return func(c echo.Context) error {
@@ -17,12 +16,19 @@ func Hello() echo.HandlerFunc {
 
 func Health() echo.HandlerFunc {
     return func(c echo.Context) error {
-        return c.String(http.StatusOK, healthMsg)
+        return c.String(http.StatusOK, healthStatus)
     }
 }
 
 func Update() echo.HandlerFunc {
     return func(c echo.Context) error {
-        return c.String(http.StatusOK, "update status => " + healthMsg + " " )
+        if healthStatus == "OK"{
+            healthStatus = "NG"
+        }else if healthStatus == "NG"{
+            healthStatus = "OK"
+        }else{
+            healthStatus = "NG"
+        }
+        return c.String(http.StatusOK, "update status => " + healthStatus)
     }
 }
